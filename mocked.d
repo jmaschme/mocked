@@ -2,15 +2,8 @@ module unitTest.mocked;
 
 version(unittest) {
 
-  import core.sys.posix.sys.mman;
-  import core.memory;
-  import std.conv;
-  import std.demangle;
-  import std.stdio;
-  import std.traits;
-  import std.typecons;
-  import std.typetuple;
-  import std.variant;
+  import core.sys.posix.sys.mman, core.memory;
+  import std.conv, std.demangle, std.math, std.stdio, std.traits, std.typecons, std.typetuple, std.variant;
 
  private:
 
@@ -141,7 +134,7 @@ version(unittest) {
       assert(freeFunctionTest1Called);
 
       patchFunction!(freeFunctionTest2)(&freeFunctionTest2);
-      assert(freeFunctionTest2() == 0.0);
+      assert(isNaN(freeFunctionTest2()));
       unpatchFunction(&freeFunctionTest2);
       assert(freeFunctionTest2() == 0.5);
     }
